@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
       # emailが空では登録できないテストコードを記述します。
       user = User.new(nickname: 'test', email: '', password: '000000', password_confirmation: '000000')
       user.valid?
-      binding.pry
+      expect(user.errors.full_messages).to include("Email can't be blank")
     end
   end
 end
