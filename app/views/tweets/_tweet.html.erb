@@ -1,0 +1,24 @@
+<div class = "content_post" style="background-image: url(<%= tweet.image %>);">
+  <div class="more">
+    <span><%= image_tag 'arrow_top.png' %></span>
+    <ul class="more_list">
+      <li>
+        <%= link_to '詳細', tweet_path(tweet.id), method: :get %>
+      </li>
+      <% if user_signed_in? && current_user.id == tweet.user_id %>
+      <li>
+        <%= link_to '編集', edit_tweet_path(tweet.id),method: :get %>
+      </li>
+      <li>
+        <%= link_to '削除', tweet_path(tweet.id), method: :delete %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <p><%= tweet.text %></p>
+  <span class = "name">
+    <a href="/users/<%= tweet.user.id %>">
+      <span>投稿者</span><%= tweet.user.nickname %>
+    </a>
+  </span>
+</div>
