@@ -1,6 +1,6 @@
 class Tweet < ApplicationRecord
   validates :text, presence: true
-  belongs_to :user
+  belongs_to :user #「TweetはUserに属している必要がある」制約が含まれている
   has_many :comments  # commentsテーブルとのアソシエーション
   
   def self.search(search)
