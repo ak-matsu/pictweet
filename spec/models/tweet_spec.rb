@@ -11,6 +11,8 @@ RSpec.describe Tweet, type: :model do
         expect(@tweet).to be_valid
       end
       it 'テキストがあれば投稿できる' do
+        @tweet.image = '' #imageを空にした上で、保存されるものであることを確認しています。
+        expect(@tweet).to be_valid
       end
     end
 
