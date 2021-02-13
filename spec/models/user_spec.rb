@@ -39,10 +39,22 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
     it 'nicknameが7文字以上では登録できない' do
+      @user.nickname = 'aaaaaaa'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Nickname is too long (maximum is 6 characters)')
     end
     it '重複したemailが存在する場合登録できない' do
+      @user.save #@userをテーブルに保存したあと
+      another_user = FactoryBot.build(:user) #再度別のユーザーanother_userを生成
+      another_user.email = @user.email #ここでanother_userのemailにすでに保存済みの@userのemailを上書き
+      another_user.valid? #valid?でanother_userが保存されるか判別。
+      expect(another_user.errors.full_messages).to include('Email has already been taken')
     end
     it 'passwordが5文字以下では登録できない' do
+      @user.password = '00000'
+      @user.password_confirmation = '00000'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password is too short (minimum is 5 characters)')
     end
   end
 end
