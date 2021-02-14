@@ -33,10 +33,16 @@ RSpec.describe "Tweets", type: :request do
       expect(response.status).to eq(200)
     end
     it 'showアクションにリクエストするとレスポンスに投稿済みのツイートのテキストが存在する'do
+      get tweet_path(@tweet)
+      expect(response.body).to include(@tweet.text)
     end
     it 'showアクションにリクエストするとレスポンスに投稿済みのツイートの画像URLが存在する'do
+      get tweet_path(@tweet)
+      expect(response.body).to include(@tweet.image)
     end
     it 'showアクションにリクエストするとレスポンスにコメント一覧表示部分が存在する'do
+      get tweet_path(@tweet)
+      expect(response.body).to include('＜コメント一覧＞')
     end
   end
 end
