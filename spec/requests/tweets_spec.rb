@@ -13,6 +13,8 @@ RSpec.describe "Tweets", type: :request do
       #expectによりカッコ内が想定通りか確認する。response.statusと実行すると返ってくる値が200であればよい
     end
     it 'indexアクションにリクエストするとレスポンスに投稿済みのツイートのテキストが存在する' do
+      get root_path
+      binding.pry
     end
     it 'indexアクションにリクエストするとレスポンスに投稿済みのツイートの画像URLが存在する' do
     end
