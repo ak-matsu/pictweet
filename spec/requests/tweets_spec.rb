@@ -18,6 +18,8 @@ RSpec.describe "Tweets", type: :request do
       #expectによりresponse.bodyを実行、返ってきた値は文字列のためincludeとなる。
     end
     it 'indexアクションにリクエストするとレスポンスに投稿済みのツイートの画像URLが存在する' do
+      get root_path
+      expect(response.body).to include(@tweet.image)
     end
     it 'indexアクションにリクエストするとレスポンスに投稿検索フォームが存在する' do
     end
