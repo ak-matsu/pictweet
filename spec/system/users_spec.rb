@@ -10,6 +10,7 @@ RSpec.describe 'ユーザー新規登録', type: :system do
     
     #トップページに移動する
     visit root_path #visit は root_pathへ遷移することを表す
+    binding.pry
 
     #トップページにサインアップページへ遷移するボタンが有る
     expect(page).to have_content('新規登録')
@@ -18,7 +19,16 @@ RSpec.describe 'ユーザー新規登録', type: :system do
 
 
     #新規登録ページへ移動する
+    vist new_user_registration_path #ユーザー情報を登録するため
+
     #ユーザー情報を入力する
+    fill_in 'Nickname',with: @user.nickname
+    fill_in 'Email',with: @user.email
+    fill_in 'Password',with:@user.password
+    fill_in 'Password confirmation',with:@user.password_confirmation
+    #fill_in 'フォームの名前', with: '入力する文字列'のように記述することで、フォームへの入力を行うことができる。
+
+
     #サインアップボタンを押すとユーザーモデルのカウントが1上がる
     #トップページへ遷移する
     #カーソルを合わせるとログアウトボタンが表示される
