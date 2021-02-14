@@ -22,6 +22,8 @@ RSpec.describe "Tweets", type: :request do
       expect(response.body).to include(@tweet.image)
     end
     it 'indexアクションにリクエストするとレスポンスに投稿検索フォームが存在する' do
+      get root_path
+      expect(response.body).to include('投稿を検索する')
     end
   end
 end
