@@ -14,7 +14,8 @@ RSpec.describe "Tweets", type: :request do
     end
     it 'indexアクションにリクエストするとレスポンスに投稿済みのツイートのテキストが存在する' do
       get root_path
-      binding.pry
+      expect(response.body).to include(@tweet.text)
+      #expectによりresponse.bodyを実行、返ってきた値は文字列のためincludeとなる。
     end
     it 'indexアクションにリクエストするとレスポンスに投稿済みのツイートの画像URLが存在する' do
     end
