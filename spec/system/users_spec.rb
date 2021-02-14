@@ -36,6 +36,14 @@ RSpec.describe 'ユーザー新規登録', type: :system do
     expect(current_path).to eq(root_path)
 
     #カーソルを合わせるとログアウトボタンが表示される
+    expect(
+      find('.user_nav').find('span').hover
+    ).to have_content('ログアウト')
+    binding.pry
+    #have:find('ブラウザ上の要素').hoverとすることで、特定の要素にカーソルをあわせたときの動作を再現できる。
+    #ログアウトボタンはヘッダーの中のspan要素をhoverすることで現れる。しかし、span要素は他でも使われているため、その親要素のuser_navクラスもあわせて指定させている。
+    
+
     #サインアップボタンへ遷移するボタンや、ログインページへ遷移するボタンが表示されていない
     end
   end
