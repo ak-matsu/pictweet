@@ -8,6 +8,8 @@ RSpec.describe "Tweets", type: :request do
   #exsampleを整理した処理
   describe "GET #index" do
     it 'indexアクションにリクエストすると正常にレスポンスが返ってくる' do
+      get root_path #indexアクションにリクエストを送るため、get root_pathを使用。
+      binding.pry
     end
     it 'indexアクションにリクエストするとレスポンスに投稿済みのツイートのテキストが存在する' do
     end
