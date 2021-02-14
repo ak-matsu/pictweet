@@ -9,7 +9,8 @@ RSpec.describe "Tweets", type: :request do
   describe "GET #index" do
     it 'indexアクションにリクエストすると正常にレスポンスが返ってくる' do
       get root_path #indexアクションにリクエストを送るため、get root_pathを使用。
-      binding.pry
+      expect(response.status).to eq(200) 
+      #expectによりカッコ内が想定通りか確認する。response.statusと実行すると返ってくる値が200であればよい
     end
     it 'indexアクションにリクエストするとレスポンスに投稿済みのツイートのテキストが存在する' do
     end
