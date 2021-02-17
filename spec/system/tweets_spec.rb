@@ -129,13 +129,22 @@ RSpec.describe 'ツイート編集', type: :system do
         all('.more')[0].hover
       ).to have_no_link '編集',href: edit_tweet_path(@tweet2)
 
-      binding.pry
-
     end
     it 'ログインしていないとツイートの編集画面には画面遷移できない' do
       # トップページにいる
+      visit root_path
+
       # ツイート1に「編集」ボタンがないことを確認する
+      expect(
+        all('.more')[1].hover
+      ).to have_no_link '編集',href: edit_tweet_path(@tweet1)
+
       # ツイート2に「編集」ボタンがないことを確認する
+      expect(
+        all('.more')[0].hover
+      ).to have_no_link '編集',href: edit_tweet_path(@tweet2)
+
+
     end
 
 
