@@ -40,6 +40,7 @@ RSpec.describe "ツイート投稿", type: :system do
 
       # トップページには先ほど投稿した内容のツイートが存在することを確認する（画像）
       expect(page).to have_selector ".content_post[style='background-image: url(#{@tweet_image});']"
+      #have_selector:指定したセレクタが存在するか判断するマッチャ
 
       # トップページには先ほど投稿した内容のツイートが存在することを確認する（テキスト）
       expect(page).to have_content(@tweet_text)
@@ -48,7 +49,10 @@ RSpec.describe "ツイート投稿", type: :system do
   context 'ツイート投稿ができないとき' do
     it 'ログインしてないと新規投稿ページ遷移できない' do
       # トップページに遷移する
+      visit root_path
+
       # 新規投稿ページへのリンクがない
+      expect(page).to have_no_content('投稿する')
     end
   end
 end
