@@ -170,8 +170,8 @@ RSpec.describe 'ツイート削除', type: :system do
 
       # 投稿を削除するとレコードの数が1減ることを確認する
       expect{
-        find('input[name="commit"]').click
-      }.to change {Tweet.count}.by(-1)
+        all('.more')[1].hover.find_link('削除',href: tweet_path(@tweet1)).click)
+      }.to change {Tweet.count }.by(-1)
 
       # 削除完了画面に遷移したことを確認する
       binding.pry
