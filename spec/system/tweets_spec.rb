@@ -156,9 +156,26 @@ RSpec.describe 'ツイート削除', type: :system do
   context 'ツイート削除ができるとき' do
     it 'ログインしたユーザーは自らが投稿したツイートの削除ができる' do
       # ツイート1を投稿したユーザーでログインする
+      visit new_user_session_path
+      fill_in "Email",with:@tweet1.user.email
+      fill_in "Password",with:@tweet1.user.password
+      find('input[name="commit"]').click
+      expect(current_path).to eq(root_path)
+      
+
       # ツイート1に「削除」ボタンがあることを確認する
+      expect(
+        all('.more')[1].hover
+      ).to have_link '削除', href: tweet_path(@tweet1)
+
       # 投稿を削除するとレコードの数が1減ることを確認する
+      expect{
+        find('input[name="commit"]').click
+      }.to change {Tweet.count}.by(-1)
+
       # 削除完了画面に遷移したことを確認する
+      binding.pry
+
       # 「削除が完了しました」の文字があることを確認する
       # トップページに遷移する
       # トップページにはツイート1の内容が存在しないことを確認する（画像）
