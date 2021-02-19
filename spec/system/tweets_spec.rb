@@ -270,5 +270,6 @@ RSpec.describe 'ツイート詳細', type: :system do
     # 「コメントの投稿には新規登録/ログインが必要です」が表示されていることを確認する
     expect(page).to have_content("コメントの投稿には新規登録/ログインが必要です")
 
+    てｓｔ
   end
 end
