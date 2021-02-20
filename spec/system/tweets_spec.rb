@@ -62,7 +62,7 @@ RSpec.describe 'ツイート編集', type: :system do
   context 'ツイート編集できるとき' do
     it 'ログインしたユーザーは自分が投稿したツイートの編集ができる' do      
       # ツイート1を投稿したユーザーでログインする
-      sign_in(@user)
+      sign_in(@tweet1.user)
 
       #クリックされログイン後の画面は、
       #root_pathに戻ってくることを確認する処理。
@@ -111,7 +111,7 @@ RSpec.describe 'ツイート編集', type: :system do
   context 'ツイート編集ができないとき' do
     it 'ログインしたユーザーは自分以外が投稿したツイートの編集画面には遷移できない' do
       # ツイート1を投稿したユーザーでログインする
-      sign_in(@user)
+      sign_in(@tweet1.user)
 
       # ツイート2に「編集」ボタンがないことを確認する
       expect(
@@ -144,7 +144,7 @@ RSpec.describe 'ツイート削除', type: :system do
   context 'ツイート削除ができるとき' do
     it 'ログインしたユーザーは自らが投稿したツイートの削除ができる' do
       # ツイート1を投稿したユーザーでログインする
-      sign_in(@user)
+      sign_in(@tweet1.user)
       
 
       # ツイート1に「削除」ボタンがあることを確認する
@@ -176,7 +176,7 @@ RSpec.describe 'ツイート削除', type: :system do
   context 'ツイート削除ができないとき' do
     it 'ログインしたユーザーは自分以外が投稿したツイートの削除ができない' do
       # ツイート1を投稿したユーザーでログインする
-      sign_in(@user)
+      sign_in(@tweet1.user)
       
       # ツイート2に「削除」ボタンが無いことを確認する
       expect(
@@ -207,7 +207,7 @@ RSpec.describe 'ツイート詳細', type: :system do
   end
   it 'ログインしたユーザーはツイート詳細ページに遷移してコメント投稿欄が表示される' do
     # ログインする
-    sign_in(@user)
+    sign_in(@tweet.user)
 
     # ツイートに「詳細」ボタンがあることを確認する
     expect(
