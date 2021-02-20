@@ -9,11 +9,7 @@ RSpec.describe 'ツイート投稿', type: :system do
   context 'ツイート投稿ができるとき'do
     it 'ログインしたユーザーは新規投稿できる' do
       # ログインする
-      visit user_session_path
-      fill_in "Email",with:@user.email
-      fill_in "Password",with:@user.password
-      find('input[name="commit"]').click
-      expect(current_path).to eq(root_path)
+      sign_in(@user)
 
       # 新規投稿ページへのリンクがあることを確認する
       expect(page).to have_content('投稿する')
@@ -66,13 +62,8 @@ RSpec.describe 'ツイート編集', type: :system do
   context 'ツイート編集できるとき' do
     it 'ログインしたユーザーは自分が投稿したツイートの編集ができる' do      
       # ツイート1を投稿したユーザーでログインする
+      sign_in(@user)
 
-      visit new_user_session_path
-      fill_in "Email",with:@tweet1.user.email
-      fill_in "Password",with:@tweet1.user.password
-      find('input[name="commit"]').click
-
-      expect(current_path).to eq(root_path) 
       #クリックされログイン後の画面は、
       #root_pathに戻ってくることを確認する処理。
 
@@ -120,10 +111,7 @@ RSpec.describe 'ツイート編集', type: :system do
   context 'ツイート編集ができないとき' do
     it 'ログインしたユーザーは自分以外が投稿したツイートの編集画面には遷移できない' do
       # ツイート1を投稿したユーザーでログインする
-      visit user_session_path
-      fill_in "Email",with:@tweet1.user.email
-      fill_in "Password",with:@tweet1.user.password
-      find('input[name="commit"]').click
+      sign_in(@user)
 
       # ツイート2に「編集」ボタンがないことを確認する
       expect(
@@ -156,11 +144,7 @@ RSpec.describe 'ツイート削除', type: :system do
   context 'ツイート削除ができるとき' do
     it 'ログインしたユーザーは自らが投稿したツイートの削除ができる' do
       # ツイート1を投稿したユーザーでログインする
-      visit new_user_session_path
-      fill_in "Email",with:@tweet1.user.email
-      fill_in "Password",with:@tweet1.user.password
-      find('input[name="commit"]').click
-      expect(current_path).to eq(root_path)
+      sign_in(@user)
       
 
       # ツイート1に「削除」ボタンがあることを確認する
@@ -192,11 +176,7 @@ RSpec.describe 'ツイート削除', type: :system do
   context 'ツイート削除ができないとき' do
     it 'ログインしたユーザーは自分以外が投稿したツイートの削除ができない' do
       # ツイート1を投稿したユーザーでログインする
-      visit new_user_session_path
-      fill_in 'Email',with:@tweet1.user.email
-      fill_in 'Password',with:@tweet1.user.password
-      find('input[name="commit"]').click
-      expect(current_path).to eq(root_path)
+      sign_in(@user)
       
       # ツイート2に「削除」ボタンが無いことを確認する
       expect(
@@ -227,11 +207,7 @@ RSpec.describe 'ツイート詳細', type: :system do
   end
   it 'ログインしたユーザーはツイート詳細ページに遷移してコメント投稿欄が表示される' do
     # ログインする
-    visit new_user_session_path
-    fill_in "Email",with:@tweet.user.email
-    fill_in "Password",with:@tweet.user.password
-    find('input[name="commit"]').click
-    expect(current_path).to eq(root_path)
+    sign_in(@user)
 
     # ツイートに「詳細」ボタンがあることを確認する
     expect(
