@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+  # before_action :処理させたいメソッド名 only:オプション[:httpメソッド]
   before_action :set_tweet, only: [:edit, :show]
   before_action :move_to_index,except:[:index, :show, :search]
   
