@@ -5,6 +5,7 @@
       <li>
         <%= link_to '詳細', tweet_path(tweet.id), method: :get %>
       </li>
+      <%# 「現在ログインしているユーザー」と「ツイートを投稿したユーザー」が同じか否かを判定することができます。 %>
       <% if user_signed_in? && current_user.id == tweet.user_id %>
       <li>
         <%= link_to '編集', edit_tweet_path(tweet.id),method: :get %>

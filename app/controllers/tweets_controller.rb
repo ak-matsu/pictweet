@@ -5,6 +5,7 @@ class TweetsController < ApplicationController
   before_action :move_to_index,except:[:index, :show, :search]
   
   def index
+    #orderメソッド並び替え 降順
     @tweets = Tweet.includes(:user).order("created_at DESC")
   end
 
