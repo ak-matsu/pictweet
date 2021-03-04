@@ -1,8 +1,11 @@
 class TweetsController < ApplicationController
+  # before_action :処理させたいメソッド名 only:オプション[:httpメソッド]
   before_action :set_tweet, only: [:edit, :show]
+  # except: 除外する
   before_action :move_to_index,except:[:index, :show, :search]
   
   def index
+    #orderメソッド並び替え 降順
     @tweets = Tweet.includes(:user).order("created_at DESC")
   end
 
@@ -45,6 +48,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
   end
 
+  # indexページへリダイレクト
   def move_to_index
     unless user_signed_in?
       redirect_to action: :index

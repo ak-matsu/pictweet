@@ -3,7 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :tweets
+
+  #has_manyメソッド :モデル 1対多の繋がりを表すメソッド
+  has_many :tweets  #userが1に対して複数のtweetsテーブルとのアソシエーション
   has_many :comments #commentsテーブルとのアソシエーション
 
   validates :nickname, presence: true, length: { maximum: 6}
