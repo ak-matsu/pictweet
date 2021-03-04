@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   # before_action :処理させたいメソッド名 only:オプション[:httpメソッド]
   before_action :set_tweet, only: [:edit, :show]
+  # except: 除外する
   before_action :move_to_index,except:[:index, :show, :search]
   
   def index
@@ -46,6 +47,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
   end
 
+  # indexページへリダイレクト
   def move_to_index
     unless user_signed_in?
       redirect_to action: :index
