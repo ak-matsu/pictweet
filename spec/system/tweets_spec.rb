@@ -36,6 +36,7 @@ RSpec.describe 'ツイート投稿', type: :system do
       visit root_path
 
       # トップページには先ほど投稿した内容のツイートが存在することを確認する（画像）
+      # have_selectorは指定したセレクタが存在するか判断
       expect(page).to have_selector ".content_post[style='background-image: url(#{@tweet_image});']"
 
       # トップページには先ほど投稿した内容のツイートが存在することを確認する（テキスト）

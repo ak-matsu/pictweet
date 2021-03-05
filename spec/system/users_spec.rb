@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+# ユーザーを新規で登録するからbuild
 RSpec.describe 'ユーザー新規登録', type: :system do
   before do
     @user = FactoryBot.build(:user)
@@ -79,6 +80,7 @@ RSpec.describe 'ユーザー新規登録', type: :system do
   end
 end
 
+# 登録されたユーザーのログインテスト、つまりDBに登録されてあるからcreate
 #ユーザーログインの結合テストコード
 RSpec.describe 'ログイン', type: :system do
   #すでに登録されているユーザーに対しての挙動確認はFactoryBot.create(:user)としています。
