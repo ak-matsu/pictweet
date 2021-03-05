@@ -8,5 +8,6 @@ class User < ApplicationRecord
   has_many :tweets  #userが1に対して複数のtweetsテーブルとのアソシエーション
   has_many :comments #commentsテーブルとのアソシエーション
 
+  # nicknameとして保存できる値は最大6文字まで
   validates :nickname, presence: true, length: { maximum: 6}
 end

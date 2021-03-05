@@ -2,12 +2,14 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before do
+    # .buildは一時的にデータを書き込む。
     @user = FactoryBot.build(:user)
   end
 
   describe 'ユーザー新規登録' do
     context '新規登録できるとき' do
       it 'nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる' do
+        # be_validはvalid?メソッドの返り値が、trueであること正常系のテストを行うマッチャ
         expect(@user).to be_valid
       end
       it 'nicknameが6文字以下であれば登録できる' do
@@ -25,6 +27,8 @@ RSpec.describe User, type: :model do
       it 'nicknameが空では登録できない' do
         @user.nickname = ''
         @user.valid?
+        #@user.errors
+        #@user.errors.full_messages
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
       it 'emailが空では登録できない' do

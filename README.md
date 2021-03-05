@@ -9,3 +9,4 @@ OS：MAC
 開発言語、フレームワーク：ruby(ruby on rails)  
 エディタ：VisualStudio  
 サーバ：現在はローカルサーバ　rails sでローカルサーバを立ち上げて起動確認。  
+
