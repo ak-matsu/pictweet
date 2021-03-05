@@ -70,7 +70,9 @@ RSpec.describe 'ツイート編集', type: :system do
 
       # ツイート1に「編集」ボタンがあることを確認する
       expect(
+        # all('クラス名')[0]で添字を加えることで何番目の.moreクラスを取得できる
         all('.more')[1].hover
+      # have_linkはリンクの存在を確認するマッチャ、つまり編集があることを確認している。
       ).to have_link '編集', href: edit_tweet_path(@tweet1)
 
       # 編集ページへ遷移する
@@ -117,6 +119,7 @@ RSpec.describe 'ツイート編集', type: :system do
       # ツイート2に「編集」ボタンがないことを確認する
       expect(
         all('.more')[0].hover
+        # have_no_linkリンクが存在しないこと、編集が存在しないこと
       ).to have_no_link '編集',href: edit_tweet_path(@tweet2)
 
     end
