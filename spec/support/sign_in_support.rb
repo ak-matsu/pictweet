@@ -1,3 +1,5 @@
+# サポートモジュールを使い
+# sign_inメソッドを作りサインインの繰り返し処理をまとめ
 module SignInSupport
   def sign_in(user)
     visit new_user_session_path

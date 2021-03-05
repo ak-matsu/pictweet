@@ -18,6 +18,7 @@ RSpec.describe "コメント投稿", type: :system do
     # コメントを送信すると、Commentモデルのカウントが1上がることを確認する
     expect{
       find('input[name="commit"]').click
+      # changeはモデルのレコード数を確認する
     }.to change { Comment.count }.by(1)
 
 
