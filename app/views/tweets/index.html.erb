@@ -3,5 +3,11 @@
   <%= form.submit "検索", class: "search-btn" %>
 <% end %>
 <div class="contents row">
-  <%= tweet_lists(@tweets)%>
+  <% @tweets.each do |tweet| %>
+  <%# renderメソッドは部分テンプレートを呼び出す。
+  partial:オプションで該当する部分テンプレートを表示。
+  locals:オプションで部分テンプレートの変数を使える。
+  tweetの部分テンプレートを呼び出し、表示、tweetという変数を使う %>
+    <%= render partial: "tweet", locals: { tweet: tweet} %>
+  <% end %>
 </div>
