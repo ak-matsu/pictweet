@@ -6,7 +6,9 @@ class TweetsController < ApplicationController
   
   def index
     #orderメソッド並び替え 降順
-    @tweets = Tweet.includes(:user).order("created_at DESC")
+    # @tweets = Tweet.includes(:user).order("created_at DESC")
+    query = "SELECT * FROM tweets"
+    @tweets = Tweet.find_by_sql(query)
   end
 
   def new
