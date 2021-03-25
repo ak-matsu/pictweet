@@ -4,7 +4,9 @@ class SearchTweetsService
   # この場合、Tweet.allで全てのTweetを取得、表示させる。
     if search != ""
     # whereで条件をつけてLIKEであいまい検索
-      Tweet.where('text LIKE(?)', "%#{search}%")
+      # Tweet.where('text LIKE(?)', "%#{search}%")
+      Tweet.find_by_sql("select * from tweets where text like '%#{search}%' ")
+
     else
       Tweet.all
     end
