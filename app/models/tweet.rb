@@ -4,6 +4,7 @@ class Tweet < ApplicationRecord
   belongs_to :user #「TweetはUserに属している必要がある」制約が含まれている
   has_many :comments  # commentsテーブルとのアソシエーション
   
-
+  # imageも空で投稿できないように追記
+  validates :text, :image, presence: true
 
 end
