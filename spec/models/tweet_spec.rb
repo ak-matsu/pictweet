@@ -10,10 +10,6 @@ RSpec.describe Tweet, type: :model do
       it '画像とテキストがあれば投稿できる' do
         expect(@tweet).to be_valid
       end
-      it 'テキストがあれば投稿できる' do
-        @tweet.image = '' #imageを空にした上で、保存されるものであることを確認しています。
-        expect(@tweet).to be_valid
-      end
     end
 
     context 'ツイートが投稿できない場合' do
@@ -21,13 +17,20 @@ RSpec.describe Tweet, type: :model do
         @tweet.text = ''
         @tweet.valid?
         # binding.pry 「binding.pry」をいれることによってincludeで出力されるメッセージを記述することができる。
-        expect(@tweet.errors.full_messages).to include("Text can't be blank")
+        expect(@tweet.errors.full_messages).to include('テキストを入力してください')
       end
+
+      it '画像がないとツイートは保存できない' do
+        @tweet.image = nil
+        @tweet.valid?
+        expect(@tweet.errors.full_messages).to include('画像を入力してください')
+      end
+
       it 'ユーザーが紐付いていなければ投稿できない' do
         @tweet.user = nil #生成した@tweetに紐づくユーザーを、nilとして無いものとしている。
         @tweet.valid?
         # binding.pry
-        expect(@tweet.errors.full_messages).to include("User must exist")
+        expect(@tweet.errors.full_messages).to include('Userを入力してください')
       end
     end
   end
